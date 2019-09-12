@@ -12,9 +12,12 @@ class ThreadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        //
+        $threads = Thread::paginate(5);
+
+        return view('threads.index', ['threads' => $threads]);
     }
 
     /**
@@ -58,7 +61,8 @@ class ThreadController extends Controller
      */
     public function edit(Thread $thread)
     {
-        //
+        $this->authorize('update', $thread);
+        return view('threads.edit', ['thread' => $thread]);
     }
 
     /**
@@ -70,7 +74,19 @@ class ThreadController extends Controller
      */
     public function update(Request $request, Thread $thread)
     {
-        //
+        $this->authorize('update', $thread);
+
+        $this->validate(request(), [
+            'title' => 'required',
+            'body' => 'required'
+        ]);
+
+        $thread->update(request([
+            'title',
+            'body'
+        ]));
+
+        return redirect('/threads');
     }
 
     /**
@@ -81,6 +97,9 @@ class ThreadController extends Controller
      */
     public function destroy(Thread $thread)
     {
+        $this->authorize('delete', $thread);
+
+        $thread->comments()->delete();
         $thread->delete();
         return redirect('/threads');
     }

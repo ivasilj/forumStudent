@@ -15,10 +15,11 @@
                 <div class="card-body">
                     <h5 class="card-title font-weight-bold">{{$thread->title}}</h5>
                     <p class="card-text">{{$thread->body}}</p>
-                    <a href="" class="btn btn-warning">Uredi</a>
+                    @can('update', $thread)
+                    <a href="/threads/{{$thread->id}}/edit" class="btn btn-warning">Uredi</a>
 {{--                    <a href="#" class="btn btn-danger">Izbriši</a>--}}
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete-{{$thread->id }}">Izbriši</button>
-
+                    @endcan
                 </div>
                 <div class="card-footer text-muted">
                     {{$thread->created_at->diffForHumans()}}
