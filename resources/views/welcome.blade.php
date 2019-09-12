@@ -82,11 +82,12 @@
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
+                    {{$name}}
                 </div>
 
                 <div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracastss</a>
+                    <a href="https://laracasts.com">Laracasts</a>
                     <a href="https://laravel-news.com">News</a>
                     <a href="https://blog.laravel.com">Blog</a>
                     <a href="https://nova.laravel.com">Nova</a>
@@ -95,5 +96,9 @@
                 </div>
             </div>
         </div>
+{{--    <script>--}}
+{{--        let k = "{{$name}}"--}}
+{{--        alert (k)--}}
+{{--    </script>--}}
     </body>
 </html>
