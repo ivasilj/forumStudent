@@ -12,10 +12,6 @@ nav {
     font-family: 'Roboto Condensed', sans-serif;
 }
 
-.thread-icon {
-    background: url("../images/thread.png");
-}
-
 #kk {
     background: #3E5151;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to bottom, #DECBA4, #3E5151);  /* Chrome 10-25, Safari 5.1-6 */
