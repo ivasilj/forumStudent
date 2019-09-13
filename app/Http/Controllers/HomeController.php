@@ -30,4 +30,10 @@ class HomeController extends Controller
         $newUsers = User::latest()->limit(3)->get();
         return view('home', ['latestThreads' => $latestThreads, 'popularThreads' => $popularThreads, 'newUsers' => $newUsers]);
     }
+
+    public function users()
+    {
+        $users = User::with('college')->paginate(5);
+        return view('users.index', ['users' => $users]);
+    }
 }

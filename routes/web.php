@@ -11,13 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome', ['name' => 'James']);
-});
 
+Route::get('/', 'HomeController@index')->name('home');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('threads', 'ThreadController');
 Route::resource('comments', 'CommentController');
+Route::get('/users', 'HomeController@users');
 
