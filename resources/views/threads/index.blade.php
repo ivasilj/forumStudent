@@ -29,7 +29,10 @@
                         </div>
                     @endforeach
                 </div>
-                {{ $threads->links() }}
+                <div class="d-flex justify-content-between">
+                    {{ $threads->links() }}
+                    <a class="btn btn-primary h-50" href="/threads/create">Kreiraj temu</a>
+                </div>
             </main>
         </div>
     </div>

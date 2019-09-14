@@ -18,9 +18,7 @@
                         </div>
                     </div>
                 @endforeach
-                <small class="d-block text-right mt-3">
-                    <a href="/users">Svi korisnici</a>
-                </small>
+            <div class="d-flex mt-3 justify-content-end">{{$users->links()}}</div>
             </div>
         </div>
     </div>

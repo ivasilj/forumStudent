@@ -27,8 +27,8 @@
                 </div>
             </div>
         </div>
-        @foreach($thread->comments as $comment)
         <div class="row justify-content-center">
+            @foreach($thread->comments as $comment)
             <div class="col-9 mt-3 card text-center">
                 <form id="threadDelete-{{ $thread->id }}" method="POST" action="/threads/{{$thread->id}}">
                     @csrf
@@ -38,15 +38,12 @@
                 <div class="card-body">
                     <p class="card-text">{{$comment->body}}</p>
                         @if(Auth::user()->id === $comment->user_id)
-{{--                        <a href="/comments/{{$comment->id}}/edit" class="btn btn-warning">Uredi</a>--}}
-                        {{--                    <a href="#" class="btn btn-danger">Izbriši</a>--}}
                         <form id="commentDelete-{{ $comment->id }}" method="POST" action="/comments/{{$comment->id}}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger" form_id="commentDelete-{{ $comment->id }}">Izbriši
                             </button>
                         </form>
-
                         @endif
                 </div>
                 <div class="d-flex card-footer text-muted justify-content-between">
@@ -54,7 +51,10 @@
                     <p>{{$comment->created_at->locale('hr')->diffForHumans()}}</p>
                 </div>
             </div>
+            @endforeach
+            <div class="col-9 mt-3 d-flex justify-content-end">
+                <a href="/comments/create" class="btn btn-primary">Dodaj komentar</a>
+            </div>
         </div>
-        @endforeach
     </div>
 @endsection
