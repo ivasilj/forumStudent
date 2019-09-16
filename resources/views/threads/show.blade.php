@@ -41,7 +41,7 @@
                         <form id="commentDelete-{{ $comment->id }}" method="POST" action="/comments/{{$comment->id}}">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" form_id="commentDelete-{{ $comment->id }}">Izbriši
+                            <button type="submit" class="btn btn-danger" form="commentDelete-{{ $comment->id }}">Izbriši
                             </button>
                         </form>
                         @endif
@@ -53,7 +53,35 @@
             </div>
             @endforeach
             <div class="col-9 mt-3 d-flex justify-content-end">
-                <a href="/comments/create" class="btn btn-primary">Dodaj komentar</a>
+                <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#modalComment">Dodaj komentar
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalComment" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Dodaj komentar</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <form id="addComment" method="POST" action="/comments">
+                            <input type="hidden" name="thread_id" value="{{$thread->id}}">
+                            @csrf
+                            <label for="body"></label>
+                            <textarea id="body" name ="body" form="addComment" class="form-control text-left" rows="3"></textarea>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Zatvori</button>
+                    <button type="submit" class="btn btn-primary" form="addComment">Dodaj</button>
+                </div>
             </div>
         </div>
     </div>
